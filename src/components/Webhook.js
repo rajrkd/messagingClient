@@ -3,11 +3,11 @@ import axios from 'axios';
 
 const Webhook = () => {
     //const [instagramAccessToken, setInstagramAccessToken] = useState('');
-
+    const apiUrl = process.env.REACT_APP_API_URL;
     useEffect(() => {
         const webhookConn = async () => {
           console.log("reached");  
-          const response = await axios.get('http://localhost:5000/webhook');
+          const response = await axios.get(`${apiUrl}/webhook`);
           console.log("Response ",response.data);
           
         };
@@ -16,7 +16,7 @@ const Webhook = () => {
       }, []);
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:5000/webhook', {
+        fetch(`${apiUrl}/webhook`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

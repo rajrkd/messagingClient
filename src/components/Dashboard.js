@@ -9,6 +9,8 @@ const Dashboard = () => {
   const [selectedValue, setSelectedValue] = useState('');
   const [instagramUsername, setInstagramUsername] = useState('');
   const history = useNavigate();
+  const apiUrl = process.env.REACT_APP_API_URL;
+ //console.log(apiUrl);
 
   //const [message, setMessage] = useState('');
   //const [cronTime, setCronTime] = useState('');
@@ -17,7 +19,7 @@ const Dashboard = () => {
     const fetchRecipients = async () => {
       const token = localStorage.getItem('token');
       console.log("fetch token ", token);
-      const response = await axios.get('http://localhost:5000/accounts/igAccounts',
+      const response = await axios.get(`${apiUrl}/accounts/igAccounts`,
         { headers: { 'Content-Type': 'application/json','Authorization': token } });
       console.log("Response ",response.data);
       setRecipients(response.data);

@@ -15,6 +15,7 @@ const PostReels = () => {
     const [file, setFile] = useState(null);
     //const [filePath, setFilePath] = useState("");
     //const [containerId, setContainerId] = useState("");
+    const apiUrl = process.env.REACT_APP_API_URL;
     const location = useLocation();
     const history = useNavigate();
     console.log('location ',location.state);
@@ -76,7 +77,7 @@ const PostReels = () => {
         data.append("instagramId",instagramId);
         try {
             if (file !== null) {
-                const response = await axios.post("http://localhost:5000/uploads/upload/"+instagramId+"", data, {
+                const response = await axios.post(`${apiUrl}/uploads/upload/`+instagramId+"", data, {
                     headers: {
                             "Content-Type": "multipart/form-data",
                     },
@@ -99,7 +100,7 @@ const PostReels = () => {
             });
             
             if (type ==="post") {
-                const response = await axios.post("http://localhost:5000/uploads/uploadReels", data,{
+                const response = await axios.post(`${apiUrl}/uploads/uploadReels`, data,{
                         headers: {
                                     "Content-Type": "application/json",
                             },
@@ -113,7 +114,7 @@ const PostReels = () => {
                 pubData.append("coverUrl", "");
                 pubData.append("thumbOffset", formData.thumbOffset);
                 if (response.data.uploaded) {
-                    const publish = await axios.post("http://localhost:5000/uploads/publishReels", pubData,{
+                    const publish = await axios.post(`${apiUrl}/uploads/publishReels`, pubData,{
                         headers: {
                                 "Content-Type": "application/json",
                         },
@@ -152,7 +153,7 @@ const PostReels = () => {
                 
                 console.log("after adding",inputData.entries());
                 const token = localStorage.getItem('token');
-                const schedule = await axios.post("http://localhost:5000/uploads/schedule", inputData,{
+                const schedule = await axios.post(`${apiUrl}/uploads/schedule`, inputData,{
                     headers: {
                             "Content-Type": "application/json", 'Authorization': token
                     },

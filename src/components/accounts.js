@@ -6,7 +6,8 @@ import axios from 'axios';
 
 const Accounts = () =>{
     const [instagramAccounts, setInstagramAccounts] = useState('[]');
-
+    const apiUrl = process.env.REACT_APP_API_URL;
+    console.log(apiUrl);
     useEffect(
         useCallback(() => {
                 
