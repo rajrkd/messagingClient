@@ -12,7 +12,7 @@ const Register = () => {
     try {
       var regData = await axios.post(`${apiUrl}/register`, { username, password });
       alert('Registration successful. You can now log in.');
-      //console.log(regData);
+      console.log(regData);
       navigate('/login');
     } catch (error) {
       alert('Registration failed.');

@@ -23,7 +23,7 @@ const UploadReel = () => {
       alert(`File uploaded: ${response.data}`);
       const values = JSON.stringify(response.data);
       const filePath = values.filePath;
-      console.log(values);
+      console.log(filePath);
     } catch (error) {
       console.error("Error uploading file", error);
       alert("Error uploading file");
