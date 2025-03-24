@@ -19,7 +19,7 @@ const Dashboard = () => {
     const fetchRecipients = async () => {
       const token = localStorage.getItem('token');
       console.log("fetch token ", token);
-      const response = await axios.get(`/accounts/igAccounts`,
+      const response = await axios.get(`/api/accounts/igAccounts`,
         { headers: { 'Content-Type': 'application/json','Authorization': token } });
       console.log("Response ",response.data);
       setRecipients(response.data);

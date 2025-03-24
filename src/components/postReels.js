@@ -77,7 +77,7 @@ const PostReels = () => {
         data.append("instagramId",instagramId);
         try {
             if (file !== null) {
-                const response = await axios.post(`/uploads/upload/`+instagramId+"", data, {
+                const response = await axios.post(`/api/uploads/upload/`+instagramId+"", data, {
                     headers: {
                             "Content-Type": "multipart/form-data",
                     },
@@ -100,7 +100,7 @@ const PostReels = () => {
             });
             
             if (type ==="post") {
-                const response = await axios.post(`/uploads/uploadReels`, data,{
+                const response = await axios.post(`/api/uploads/uploadReels`, data,{
                         headers: {
                                     "Content-Type": "application/json",
                             },
@@ -114,7 +114,7 @@ const PostReels = () => {
                 pubData.append("coverUrl", "");
                 pubData.append("thumbOffset", formData.thumbOffset);
                 if (response.data.uploaded) {
-                    const publish = await axios.post(`/uploads/publishReels`, pubData,{
+                    const publish = await axios.post(`/api/uploads/publishReels`, pubData,{
                         headers: {
                                 "Content-Type": "application/json",
                         },
@@ -153,7 +153,7 @@ const PostReels = () => {
                 
                 console.log("after adding",inputData.entries());
                 const token = localStorage.getItem('token');
-                const schedule = await axios.post(`/uploads/schedule`, inputData,{
+                const schedule = await axios.post(`/api/uploads/schedule`, inputData,{
                     headers: {
                             "Content-Type": "application/json", 'Authorization': token
                     },

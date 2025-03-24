@@ -48,7 +48,7 @@ const CronJobForm = () => {
     const cronTimeString = setCronTimeString(formData);
     const jsonString = {"cronTime":cronTimeString};
     const token = localStorage.getItem('token');
-    await fetch(`/schedule`, {
+    await fetch(`/api/schedule`, {
       method: "POST",
        headers: { 'Content-Type': 'application/json','Authorization': token } ,
       body: JSON.stringify(jsonString),

@@ -24,7 +24,7 @@ class InstagramAccounts extends React.Component {
             const token = localStorage.getItem('token');
             //console.log("get token ", this.state.apiUrl);
             
-            const response = await axios.get(`/accounts/igPages`,
+            const response = await axios.get(`/api/accounts/igPages`,
                     { headers: { 'Content-Type': 'application/json','Authorization': token } });
             console.log("Respo ",response.data);
             const result = await response.data
@@ -48,7 +48,7 @@ class InstagramAccounts extends React.Component {
         const token = localStorage.getItem('token');
         //console.log("tt ",token);
         if (accounts.length > 0) {
-            var response =  axios.post(`/accounts/add-igAccount`, {accounts },
+            var response =  axios.post(`/api/accounts/add-igAccount`, {accounts },
                 { headers: { 'Content-Type': 'application/json','Authorization': token }});
             console.log("some ", response.data);
         //this.navigateTo('/dashboard');

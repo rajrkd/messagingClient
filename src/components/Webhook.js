@@ -7,7 +7,7 @@ const Webhook = () => {
     useEffect(() => {
         const webhookConn = async () => {
           console.log("reached");  
-          const response = await axios.get(`/webhook`);
+          const response = await axios.get(`/api/webhook`);
           console.log("Response ",response.data);
           
         };

@@ -17,7 +17,7 @@ const Accounts = () =>{
             try{
                 const token = localStorage.getItem('token');
                 console.log("get token ", token);
-                const response = await axios.get('/accounts/igPages',
+                const response = await axios.get('/api/accounts/igPages',
                     { headers: { 'Content-Type': 'application/json','Authorization': token } });
                 console.log("Response ",response.data);
                 if (isActive) {
