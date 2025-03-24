@@ -9,7 +9,7 @@ const CronJobForm = () => {
     instagramAccount: "",
     filePath: ""
   });
-  const apiUrl = process.env.REACT_APP_API_URL;
+  //const apiUrl = process.env.REACT_APP_API_URL;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -48,7 +48,7 @@ const CronJobForm = () => {
     const cronTimeString = setCronTimeString(formData);
     const jsonString = {"cronTime":cronTimeString};
     const token = localStorage.getItem('token');
-    await fetch(`${apiUrl}/schedule`, {
+    await fetch(`/schedule`, {
       method: "POST",
        headers: { 'Content-Type': 'application/json','Authorization': token } ,
       body: JSON.stringify(jsonString),

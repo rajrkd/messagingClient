@@ -6,12 +6,12 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const history = useNavigate();
-  const apiUrl = process.env.REACT_APP_API_URL;
+  //const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${apiUrl}/login/read`, { username, password });
+      const response = await axios.post(`/login/read`, { username, password });
       localStorage.setItem('token', response.data.token);
       console.log(response.data);
      // const oauthRes = await axios.get('${apiUrl}/login/login');

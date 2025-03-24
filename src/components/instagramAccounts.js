@@ -9,7 +9,7 @@ class InstagramAccounts extends React.Component {
             loading: false,
             instagramAccounts:[],
             linkedAccounts:[],
-            apiUrl : process.env.REACT_APP_API_URL
+           // apiUrl : process.env.REACT_APP_API_URL
         }
     }
     //navigateTo(path) {
@@ -22,9 +22,9 @@ class InstagramAccounts extends React.Component {
         this.setState({ loading: true})
         try {
             const token = localStorage.getItem('token');
-            console.log("get token ", this.state.apiUrl);
+            //console.log("get token ", this.state.apiUrl);
             
-            const response = await axios.get(`${this.state.apiUrl}/accounts/igPages`,
+            const response = await axios.get(`/accounts/igPages`,
                     { headers: { 'Content-Type': 'application/json','Authorization': token } });
             console.log("Respo ",response.data);
             const result = await response.data
@@ -48,7 +48,7 @@ class InstagramAccounts extends React.Component {
         const token = localStorage.getItem('token');
         //console.log("tt ",token);
         if (accounts.length > 0) {
-            var response =  axios.post(`${this.state.apiUrl}/accounts/add-igAccount`, {accounts },
+            var response =  axios.post(`/accounts/add-igAccount`, {accounts },
                 { headers: { 'Content-Type': 'application/json','Authorization': token }});
             console.log("some ", response.data);
         //this.navigateTo('/dashboard');

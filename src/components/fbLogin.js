@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 
 const FbLogin = ({ onLoginSuccess }) => {
-  const apiUrl = process.env.REACT_APP_API_URL;
+  //const apiUrl = process.env.REACT_APP_API_URL;
   // Load the Facebook SDK asynchronously
   useEffect(() => {
     window.fbAsyncInit = function () {
@@ -36,9 +36,9 @@ const FbLogin = ({ onLoginSuccess }) => {
 
         // Optionally, fetch additional user info
         window.FB.api('/me', { fields: 'name,email' }, userInfo => {
-          console.log('User info:', userInfo);
+          console.log('User info:', userInfo, " ",userID);
           // Send the token and user information to your Express backend
-          axios.post(`${apiUrl}/fblogin/auth/facebook`, { accessToken })
+          axios.post(`/fblogin/auth/facebook`, { accessToken })
             .then(response => {
               // onLoginSuccess can store the JWT and user data in your app state
               console.log(response.data);
