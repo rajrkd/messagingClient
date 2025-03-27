@@ -75,9 +75,10 @@ const PostReels = () => {
         data.append("caption", formData.caption);
         data.append("thumbOffset", formData.thumbOffset);
         data.append("instagramId",instagramId);
+        data.append("igUsername",ig_username);
         try {
             if (file !== null) {
-                const response = await axios.post(`/api/uploads/upload/`+instagramId+"", data, {
+                const response = await axios.post(`/api/uploads/upload/`+ig_username+"", data, {
                     headers: {
                             "Content-Type": "multipart/form-data",
                     },
@@ -86,13 +87,16 @@ const PostReels = () => {
                 if(response.status === 200) {
                     alert(`${response.data.message}`);
                     const values = response.data;
-                    console.log(values.filePath);
-                    data.append("videoUrl",values.filePath);
+                    
+                    formData.videoUrl = values.s3FileUrl;
+                    data.append("videoUrl",values.s3FileUrl);
+                    console.log("url ",formData.videoUrl);
                 }
                 else {
                     console.error("file uploading failed...");
                 }
             }
+            
             data.append("accountId",instagramId);
             //console.log("got dat ", data.entries());
             data.forEach((d,e) =>{
@@ -105,7 +109,7 @@ const PostReels = () => {
                                     "Content-Type": "application/json",
                             },
                 });
-                console.log(response.data);
+                console.log("videourl ", formData.videoUrl);
                 var pubData = new FormData();
                 pubData.append("accountId",response.data.accountId);
                 pubData.append("containerId", response.data.containerId);
@@ -114,6 +118,7 @@ const PostReels = () => {
                 pubData.append("coverUrl", "");
                 pubData.append("thumbOffset", formData.thumbOffset);
                 if (response.data.uploaded) {
+                  try {
                     const publish = await axios.post(`/api/uploads/publishReels`, pubData,{
                         headers: {
                                 "Content-Type": "application/json",
@@ -135,7 +140,10 @@ const PostReels = () => {
                       
                     }   
                     history('/dashboard', {state : data});
-
+                  }
+                  catch (e) {
+                    console.log("error ", e);
+                  } 
                 }
             }
             else if (type === "schedule") {
